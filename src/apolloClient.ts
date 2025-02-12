@@ -23,11 +23,17 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   }
 });
 
-// HTTP link
+// Ensure environment variable is loaded correctly
+const GITHUB_TOKEN = window.env?.VITE_GITHUB_TOKEN || '';
+
+if (!GITHUB_TOKEN) {
+  console.error('GitHub token is missing! Make sure env.js is loaded.');
+}
+
 const httpLink = new HttpLink({
   uri: GITHUB_GRAPHQL_API,
   headers: {
-    Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
+    Authorization: `Bearer ${GITHUB_TOKEN}`,
   },
 });
 

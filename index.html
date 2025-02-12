@@ -5,6 +5,16 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Github Users</title>
+    
+    <!-- Load environment variables before React initializes -->
+    <script src="/env.js"></script>
+    <script>
+      if (!window.env || !window.env.VITE_GITHUB_TOKEN) {
+        console.error("VITE_GITHUB_TOKEN is missing!");
+      } else {
+        console.log("VITE_GITHUB_TOKEN loaded successfully.");
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
